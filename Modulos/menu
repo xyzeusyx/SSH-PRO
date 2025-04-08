@@ -556,7 +556,7 @@ menu4 (){
         echo -e "\033[1;31m SAINDO DO MENU...\033[0m"
         sleep 2s
         clear
-        exit;
+        exit 0
         ;;
         *)
         echo -e "\n\033[1;31mOpcao invalida !\033[0m"
