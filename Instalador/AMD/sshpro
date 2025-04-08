@@ -74,6 +74,7 @@ install_python() {
     echo 'net.ipv6.conf.all.disable_ipv6 = 0' >>/etc/sysctl.conf
 	echo 'net.ipv6.conf.default.disable_ipv6 = 0' >>/etc/sysctl.conf
 	echo 'net.ipv6.conf.lo.disable_ipv6 = 0' >>/etc/sysctl.conf
+	apt-get install gnupg curl build-essential git cmake clang sysstat net-tools sqlite3 libsqlite3-dev zip tar iptables ca-certificates -y >/dev/null 2>&1
 }
 
 [[ -f "$HOME/usuarios.db" ]] && {
@@ -136,6 +137,11 @@ atualiar_script() {
     cd >/dev/null 2>&1
 }
 
+instalar_rust() {
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y > /dev/null 2>&1 || error_exit "Falha ao instalar Rust"
+    . "$HOME/.cargo/env"
+}
+
 instalar_speedtest(){
     apt-get autoremove speedtest-cli -y >/dev/null 2>&1
 	apt-get remove speedtest -y >/dev/null 2>&1
@@ -165,6 +171,10 @@ executar_comando "install_python &> /dev/null" "OTIMIZANDO PYTHON"
     echo ""
 executar_comando "instalar_speedtest &> /dev/null" "INSTALANDO SPEEDTEST"
     echo ""
+    if ! command -v rustc &> /dev/null; then
+executar_comando "instalar_rust &> /dev/null" "INSTALANDO RUST"
+    echo ""
+    fi
 executar_comando "atualizar_lista &> /dev/null" "CONCLUINDO DEFINIÇÕES (AGUARDE)"
     echo ""
     cd $HOME
