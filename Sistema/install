@@ -37,7 +37,7 @@ _dir2='/etc/SSHPlus'
 
 rm $_dir2/ShellBot.sh $_dir2/cabecalho $_dir2/open.py $_dir2/proxy.py $_dir2/wsproxy.py >/dev/null 2>&1
 
-_mdls=("menussl" "menuproxy" "v2raymanager" "userbackup" "swapmemory" "sshmonitor" "senharoot" "remover" "reiniciarsistema" "reiniciarservicos" "mudardata" "menu" "gestor_swap" "expcleaner" "detalhes" "delscript" "criarusuario" "criarteste" "conexao" "botteste.sh" "blockt" "blocksite" "attscript" "antcrashvpn.sh" "antcrashvpn2.sh" "antcrashvpn3.sh" "alterarlimite")
+_mdls=("menussl" "menusec" "proxymanager" "sslmanager" "menuproxy" "v2raymanager" "userbackup" "swapmemory" "sshmonitor" "senharoot" "remover" "reiniciarsistema" "reiniciarservicos" "mudardata" "menu" "gestor_swap" "expcleaner" "detalhes" "delscript" "criarusuario" "criarteste" "conexao" "botteste.sh" "blockt" "blocksite" "attscript" "antcrashvpn.sh" "antcrashvpn2.sh" "antcrashvpn3.sh" "alterarlimite")
 _mdls2=("install" "EasyRSA-3.0.1.tgz" "jq-linux64" "licence" "ShellBot.sh" "versao")
 for _arq in ${_mdls[@]}; do
 	[[ -e $_dir1/$_arq ]] && rm $_dir1/$_arq >/dev/null 2>&1
