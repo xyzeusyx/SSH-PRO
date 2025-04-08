@@ -243,11 +243,11 @@ menu_ssl() {
 	[[ $(screen -list | grep -wc 'proxy2') != '0' ]] && sks04="\033[1;32m⬤ " || sks04="\033[1;31m⬤ "
 	echo -e "\E[44;1;37m          SSL MANAGER          \E[0m"
 	echo -e "\033[0;36m╔════════════•⊱✦⊰•════════════╗\033[0m"
-	[[ "$(netstat -tlpn 2>/dev/null | grep -E '/proxyssl( |$)' | wc -l)" != '0' ]] && {
-		echo -e "033[1;33mMULTI-SSL \033[1;32mPORTA: \033[1;37m$(netstat -nplt 2>/dev/null | grep -E '/proxyssl( |$)' | awk '{print $4}' | awk -F ':' '{print $NF}' | xargs)"
-		sts0="\033[1;32m⬤ "
+	[[ $(netstat -nplt | grep -wc 'proxyssl') != '0' ]] && {
+	    sks13="\033[1;32m⬤ "
+		echo -e "   \033[1;33mMULTI-SSL: \033[1;32m$(netstat -nplt | grep 'proxyssl' | awk -F ":" {'print $4'} | xargs)"
 	} || {
-		sts0="\033[1;31m⬤ "
+		sks13="\033[1;31m⬤ "
 	}
 	[[ -e "/etc/stunnel/stunnel.conf" ]] && {
 		echo -e "   \033[1;33mSSL-TUNNEL: \033[1;32m$(netstat -nplt | grep 'stunnel' | awk {'print $4'} | cut -d: -f2 | xargs)"
