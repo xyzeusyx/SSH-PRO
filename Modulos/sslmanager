@@ -237,11 +237,11 @@ ssltunnel() {
 	fi	
 }
 
-menu_proxy() {
+menu_ssl() {
     clear
 	[[ $(screen -list | grep -wc 'proxy1') != '0' ]] && sks02="\033[1;32m⬤ " || sks02="\033[1;31m⬤ "
 	[[ $(screen -list | grep -wc 'proxy2') != '0' ]] && sks04="\033[1;32m⬤ " || sks04="\033[1;31m⬤ "
-	echo -e "\E[44;1;37m          PROXY MANAGER        \E[0m"
+	echo -e "\E[44;1;37m          SSL MANAGER          \E[0m"
 	echo -e "\033[0;36m╔════════════•⊱✦⊰•════════════╗\033[0m"
 	[[ "$(netstat -tlpn 2>/dev/null | grep -E '/proxyssl( |$)' | wc -l)" != '0' ]] && {
 		echo -e "033[1;33mMULTI-SSL \033[1;32mPORTA: \033[1;37m$(netstat -nplt 2>/dev/null | grep -E '/proxyssl( |$)' | awk '{print $4}' | awk -F ':' '{print $NF}' | xargs)"
@@ -283,7 +283,12 @@ menu_proxy() {
         *)
 	    echo -e "\n\033[1;31mOpcao invalida!"
 	    sleep 2
-		menu_proxy
+		menu_ssl
 	    ;;
     esac
 }
+
+# Loop do menu
+while true; do
+    menu_ssl
+done

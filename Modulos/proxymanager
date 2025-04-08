@@ -370,3 +370,8 @@ menu_proxy() {
 	    ;;
     esac
 }
+
+# Loop do menu
+while true; do
+    menu_proxy
+done
