@@ -510,8 +510,7 @@ menu4 (){
         ;;
         3 | 03)
         clear
-		echo ""
-        executar_comando "badvpn &> /dev/null" "ATIVANDO BADVPN"
+        badvpn
         ;;
         4 | 04)
         clear
