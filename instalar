@@ -65,6 +65,6 @@ fi
 
 # - INICIA O INSTALADOR
 [[ -e sshpro ]] && rm -rf sshpro
-    wget https://raw.githubusercontent.com/vmell0/ssh-pro/main/Instalador/${arch}/sshpro
+    wget https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Instalador/${arch}/sshpro
     chmod 777 sshpro
     ./sshpro

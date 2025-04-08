@@ -111,27 +111,27 @@ instalar_pacote() {
 
 atualiar_script() {
     rm -rf /root/instalar >/dev/null 2>&1
-    wget -O /root/install https://raw.githubusercontent.com/vmell0/SSH-PRO/refs/heads/main/Sistema/install > /dev/null 2>&1
+    wget -O /root/install https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/refs/heads/main/Sistema/install > /dev/null 2>&1
     chmod +x /root/install >/dev/null 2>&1
     /root/install >/dev/null 2>&1
     sleep 3s
     echo "/bin/menu" >/bin/h && chmod +x /bin/h >/dev/null 2>&1
     rm versao* >/dev/null 2>&1
-    wget https://raw.githubusercontent.com/vmell0/SSH-PRO/main/Sistema/versao >/dev/null 2>&1
+    wget https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Sistema/versao >/dev/null 2>&1
     rm v2raymanager >/dev/null 2>&1
-    wget https://raw.githubusercontent.com/vmell0/SSH-PRO/main/Modulos/v2raymanager >/dev/null 2>&1
-    wget https://raw.githubusercontent.com/vmell0/SSH-PRO/main/Modulos/botteste.sh >/dev/null 2>&1
+    wget https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Modulos/v2raymanager >/dev/null 2>&1
+    wget https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Modulos/botteste.sh >/dev/null 2>&1
     chmod 777 v2raymanager >/dev/null 2>&1
     chmod 777 botteste.sh >/dev/null 2>&1
     mkdir $HOME/BOT >/dev/null 2>&1
     cd $HOME/BOT
-    wget https://raw.githubusercontent.com/vmell0/SSH-PRO/main/Sistema/ShellBot.sh >/dev/null 2>&1
+    wget https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Sistema/ShellBot.sh >/dev/null 2>&1
     chmod 777 ShellBot.sh >/dev/null 2>&1
     cd >/dev/null 2>&1
     chmod 777 licence >/dev/null 2>&1
     mkdir /etc/rec >/dev/null 2>&1
     cd /etc/rec
-    wget https://raw.githubusercontent.com/vmell0/SSH-PRO/main/Sistema/licence >/dev/null 2>&1
+    wget https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Sistema/licence >/dev/null 2>&1
     chmod 777 licence >/dev/null 2>&1
     cd >/dev/null 2>&1
 }

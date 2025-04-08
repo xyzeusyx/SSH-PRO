@@ -104,7 +104,7 @@ function limit2 () {
 
 atualizar () {
 	rm -rf /usr/bin/attscript
-	curl -s -L -o /usr/bin/attscript https://github.com/vmell0/SSH-PRO/raw/main/attscript
+	curl -s -L -o /usr/bin/attscript https://github.com/xyzeusyx/SSH-PRO/raw/main/attscript
 	chmod +x /usr/bin/attscript
 }
 
