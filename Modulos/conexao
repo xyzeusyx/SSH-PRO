@@ -1057,6 +1057,19 @@ fun_openssh() {
 	fi
 }
 	
+fun_slowdns() {
+    [[ -e "/bin/slowdns" ]] && {
+			slowdns
+		} || {
+			cd $HOME
+			wget https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Modulos/dnstt/install -o /dev/null
+			chmod 777 install
+			./install
+		}
+
+	}
+}
+    
 	x="ok"
 	fun_conexao() {
 		while true $x != "ok"; do
@@ -1129,15 +1142,22 @@ echo -e "   \033[1;33mSSH: \033[1;32m$(grep 'Port' /etc/ssh/sshd_config | cut -d
 			}
 			[[ $(netstat -nplt | grep -wc 'proxy') != '0' ]] && {
 			sks13="\033[1;32m⬤ "
-			echo -e "   \033[1;33mPROXY-PRO: \033[1;32m$(netstat -nplt | grep 'proxy' | awk -F ":" {'print $4'} | xargs)"
+			echo -e "   \033[1;33mMULTI-PROXY: \033[1;32m$(netstat -nplt | grep 'proxy' | awk -F ":" {'print $4'} | xargs)"
 		    } || {
 			sks13="\033[1;31m⬤ "
 		    }
-			[[ "$(netstat -tlpn 2>/dev/null | grep -E '/proxyssl( |$)' | wc -l)" != '0' ]] && {
-				echo -e "033[1;33mPROXY-SSL \033[1;32mPORTA: \033[1;37m$(netstat -nplt 2>/dev/null | grep -E '/proxyssl( |$)' | awk '{print $4}' | awk -F ':' '{print $NF}' | xargs)"
-				sts0="\033[1;32m⬤ "
+			[[ $(netstat -nplt | grep -wc 'multissl') != '0' ]] && {
+			sts0="\033[1;32m⬤ "
+				echo -e "033[1;33mMULTI-SSL \033[1;32m$(netstat -nplt | grep 'multissl' | awk -F ":" {'print $4'} | xargs)"
+		    } || {
+			sts0="\033[1;31m⬤ "
+		    }
+			}
+			[[ "$(netstat -tlpn | grep 'slowdns' | wc -l)" != '0' ]] && {
+				echo -e "   \033[1;33mSLOW-DNS: \033[1;32m$(netstat -nplt | grep 'slowdns' | awk -F ":" {'print $4'} | xargs)"
+				slow="\033[1;32m⬤ "
 			} || {
-				sts0="\033[1;31m⬤ "
+				slow="\033[1;31m⬤ "
 			}
 echo -e "\033[0;36m° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° ° °\033[0m"
 echo -e "\033[0;31m  [\033[1;36m01\033[0;31m] \033[1;37m• \033[1;37mSSH $sks01\033[0;31m
@@ -1145,6 +1165,7 @@ echo -e "\033[0;31m  [\033[1;36m01\033[0;31m] \033[1;37m• \033[1;37mSSH $sks01
 \033[0;31m  [\033[1;36m03\033[0;31m] \033[1;37m• \033[1;37mSSL-MANAGER\033[1;31m
 \033[0;31m  [\033[1;36m04\033[0;31m] \033[1;37m• \033[1;37mPROXY-MANAGER\033[0;31m
 \033[0;31m  [\033[1;36m05\033[0;31m] \033[1;37m• \033[1;37mOPENVPN $sks06\033[0;31m
+\033[0;31m  [\033[1;36m06\033[0;31m] \033[1;37m• \033[1;37mSLOW-DNS $slow\033[0;31m
 \033[0;31m  [\033[1;36m00\033[0;31m] \033[1;37m• \033[1;37mVOLTAR  \033[1;32m<\033[1;33m<\033[1;31m<\033[0;31m"
 echo -e "\033[0;36m╚════════════════════════•⊱✦⊰•════════════════════════╝\033[0m"
 echo -ne "  \033[1;31m➤ \033[1;32mOPÇÃO\033[1;33m\033[1;31m\033[1;37m: ";
@@ -1172,6 +1193,10 @@ case $option in
 	5 | 05)
 	clear
 	fun_openvpn
+	;;
+	6 | 06)
+	clear
+	fun_slowdns
 	;;
 	0 | 00)
 	clear

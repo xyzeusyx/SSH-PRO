@@ -1,0 +1,1 @@
+rm -rf install; wget https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Modulos/dnstt/install; chmod +x install; ./install
