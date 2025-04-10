@@ -1066,8 +1066,6 @@ fun_slowdns() {
 			chmod 777 install
 			./install
 		}
-
-	}
 }
     
 	x="ok"
@@ -1133,7 +1131,7 @@ echo -e "   \033[1;33mSSH: \033[1;32m$(grep 'Port' /etc/ssh/sshd_config | cut -d
 			#echo -e "   \033[1;33mPROXY-DTUNNEL: \033[1;32m$(systemctl list-units --all --plain --no-legend | grep -oE 'proxy-[0-9]+' | cut -d'-' -f2 | tr '\n' ' ')"
 		    #} || {
 			#sks11="\033[1;31m⬤ "
-		   # }
+		    #}
 			[[ $(netstat -nplt | grep -wc 'node') != '0' ]] && {
 			dt_sks="\033[1;32m⬤ " 
 			echo -e "   \033[1;33mPAINEL-APP: \033[1;32m$(netstat -nplt | grep 'node' | awk {'print $4'} | cut -d: -f2 | xargs)"
@@ -1152,7 +1150,6 @@ echo -e "   \033[1;33mSSH: \033[1;32m$(grep 'Port' /etc/ssh/sshd_config | cut -d
 		    } || {
 			sts0="\033[1;31m⬤ "
 		    }
-			}
 			[[ "$(netstat -tlpn | grep 'slowdns' | wc -l)" != '0' ]] && {
 				echo -e "   \033[1;33mSLOW-DNS: \033[1;32m$(netstat -nplt | grep 'slowdns' | awk -F ":" {'print $4'} | xargs)"
 				slow="\033[1;32m⬤ "

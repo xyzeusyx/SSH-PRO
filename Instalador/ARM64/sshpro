@@ -68,13 +68,12 @@ install_python() {
     apt install socat -y &> /dev/null
     #SETAR PYTHON3
     update-alternatives --set python3 /usr/bin/python3.8
-	echo '#DNS=8.8.8.8' >>/etc/systemd/resolved.conf
-	echo '#FallbackDNS=8.8.4.4' >>/etc/systemd/resolved.conf
-	service systemd-resolved restart >/dev/null 2>&1
+	#echo '#DNS=8.8.8.8' >>/etc/systemd/resolved.conf
+	#echo '#FallbackDNS=8.8.4.4' >>/etc/systemd/resolved.conf
+	#service systemd-resolved restart >/dev/null 2>&1
     echo 'net.ipv6.conf.all.disable_ipv6 = 0' >>/etc/sysctl.conf
 	echo 'net.ipv6.conf.default.disable_ipv6 = 0' >>/etc/sysctl.conf
 	echo 'net.ipv6.conf.lo.disable_ipv6 = 0' >>/etc/sysctl.conf
-	apt-get install gnupg curl build-essential git cmake clang sysstat net-tools sqlite3 libsqlite3-dev zip tar iptables ca-certificates -y >/dev/null 2>&1
 }
 
 [[ -f "$HOME/usuarios.db" ]] && {
@@ -110,7 +109,7 @@ instalar_pacote() {
 	ufw allow 6969/tcp
 }
 
-atualiar_script() {
+atualizar_script() {
     rm -rf /root/instalar >/dev/null 2>&1
     wget -O /root/install https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/refs/heads/main/Sistema/install > /dev/null 2>&1
     chmod +x /root/install >/dev/null 2>&1
@@ -154,6 +153,25 @@ instalar_speedtest(){
 	apt install speedtest -y >/dev/null 2>&1
 }
 
+atualizar_sistema() {
+    apt update -y &> /dev/null
+    dpkg --configure -a &> /dev/null
+    apt update -y &> /dev/null
+    apt upgrade -y &> /dev/null
+    apt install wget -y &> /dev/null
+	apt remove speedtest-cli -y &> /dev/null
+	rm -rf /etc/apt/sources.list.d/ookla_speedtest-cli.list &> /dev/null
+	apt update -y &> /dev/null
+	apt upgrade -y &> /dev/null
+	apt-get install lolcat -y &> /dev/null
+    apt-get install figlet -y &> /dev/null
+    apt install figlet boxes -y &> /dev/null
+	apt autoremove -y &> /dev/null
+	apt -f install -y &> /dev/null
+	apt autoclean -y &> /dev/null
+	apt-get install gnupg curl build-essential git cmake clang sysstat net-tools sqlite3 libsqlite3-dev zip tar iptables ca-certificates -y >/dev/null 2>&1
+}
+
 echo -e "\033[0;36m          
           ____ ____  _   _       ____  ____   ___   
          / ___/ ___|| | | |     |  _ \|  _ \ / _ \  
@@ -163,7 +181,9 @@ echo -e "\033[0;36m
                                                      \033[0m"
 echo ""
 #---------------------------------------------------------------
-executar_comando "atualiar_script &> /dev/null" "ATUALIZANDO SCRIPT"
+executar_comando "atualizar_sistema &> /dev/null" "ATUALIZANDO SISTEMA"
+    echo ""
+executar_comando "atualizar_script &> /dev/null" "ATUALIZANDO SCRIPT"
     echo ""
 executar_comando "instalar_pacote &> /dev/null" "INSTALANDO PACOTES"
     echo ""
