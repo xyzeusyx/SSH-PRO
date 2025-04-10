@@ -1058,14 +1058,7 @@ fun_openssh() {
 }
 	
 fun_slowdns() {
-    [[ -e "/bin/slowdns" ]] && {
-			slowdns
-		} || {
-			cd $HOME
-			wget https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Modulos/dnstt/install -o /dev/null
-			chmod 777 install
-			./install
-		}
+	bash <(wget -qO- https://raw.githubusercontent.com/xyzeusyx/SSH-PRO/main/Modulos/dnstt/install)
 }
     
 	x="ok"
@@ -1193,7 +1186,12 @@ case $option in
 	;;
 	6 | 06)
 	clear
-	fun_slowdns
+	[[ ! -e /bin/slowdns ]] && {
+	    echo ""
+        executar_comando "fun_slowdns &> /dev/null" "INSTALANDO.. AGUARDE"
+	    clear
+	}
+	slowdns
 	;;
 	0 | 00)
 	clear
