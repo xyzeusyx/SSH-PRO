@@ -181,7 +181,7 @@ echo -e "\033[0;36m
                                                      \033[0m"
 echo ""
 #---------------------------------------------------------------
-executar_comando "atualizar_sistema &> /dev/null" "ATUALIZANDO SISTEMA"
+executar_comando "atualizar_sistema &> /dev/null" "ATUALIZANDO SISTEMA (AGUARDE, PODE DEMORAR)"
     echo ""
 executar_comando "atualizar_script &> /dev/null" "ATUALIZANDO SCRIPT"
     echo ""
